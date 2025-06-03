@@ -1,40 +1,38 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import HorizontalCard from "../components/HorizontalCard.astro";
 ---
 
-<BaseLayout title="Projects" sideBarActiveItemID="services">
-  <div>
-    <div class="text-3xl w-full font-bold mb-5">Services Header</div>
+<BaseLayout sideBarActiveItemID="services">
+  <div class="pb-12 mt-5">
+    <div class="text-5xl font-bold mb-2">Our Services</div>
+    <div class="text-2xl font-semibold mb-4">What We Offer at Faithful Craftsmen</div>
+    <div class="text-lg mb-8">
+      Our greatest joy is designing and building handcrafted wooden toys—trains, cars, trucks, games, and more! Each toy is crafted with care, safety, and creativity in mind. Have a special idea or want a custom toy for your child or family? Let us know and we’ll bring it to life!
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+      <div class="bg-base-200 rounded-xl p-6">
+        <div class="text-xl font-bold mb-2">Handcrafted Wooden Toys</div>
+        <div class="text-base">Wooden toys are our specialty! We create trains, cars, trucks, games, and more—each one unique and made to inspire play and imagination. We welcome custom requests for toys of all kinds.</div>
+      </div>
+      <div class="bg-base-200 rounded-xl p-6">
+        <div class="text-xl font-bold mb-2">Custom Woodworking & Gifts</div>
+        <div class="text-base">Beyond toys, we love to craft custom furniture, decor, pens, clocks, tool handles, and unique gifts. If you have an idea for a special, handcrafted piece, we’d love to make it for you!</div>
+      </div>
+      <div class="bg-base-200 rounded-xl p-6">
+        <div class="text-xl font-bold mb-2">Repairs & Restoration</div>
+        <div class="text-base">We repair and restore cherished wooden items, giving new life to family heirlooms, furniture, and more. Let us help you preserve what matters most.</div>
+      </div>
+      <div class="bg-base-200 rounded-xl p-6">
+        <div class="text-xl font-bold mb-2">Workshops & Classes</div>
+        <div class="text-base">Interested in learning woodworking? We offer family-friendly workshops and one-on-one classes for all ages and skill levels. Come build with us!</div>
+      </div>
+      <div class="bg-base-200 rounded-xl p-6 md:col-span-2">
+        <div class="text-xl font-bold mb-2">Consultation & Design</div>
+        <div class="text-base">Need advice on a project or help with design? We’re happy to consult and guide you, whether you’re a fellow woodworker or just getting started.</div>
+      </div>
+    </div>
+    <div class="text-lg mb-6">
+      Have a project in mind or want to learn more? <a class="link link-accent" href="mailto:info@faithfulcraftsmen.com">Contact us</a>—we’d love to work with you!
+    </div>
   </div>
-
-  <HorizontalCard
-    title="Service 1"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    badge="NEW"
-    url="#"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Service 2"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Service 3"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="NEW"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Service 4"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-  />
 </BaseLayout>

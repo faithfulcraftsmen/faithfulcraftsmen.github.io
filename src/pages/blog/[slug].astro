@@ -1,0 +1,13 @@
+---
+import PostLayout from "../../layouts/PostLayout.astro";
+import { getEntryBySlug } from "astro:content";
+import { AstroError } from "astro/errors";
+
+const { slug } = Astro.params;
+const post = await getEntryBySlug("blog", slug);
+if (!post) throw new AstroError(404, `Post not found: ${slug}`);
+---
+
+<PostLayout {...post.data}>
+  {post.body}
+</PostLayout>
