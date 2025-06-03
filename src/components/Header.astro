@@ -33,7 +33,7 @@
     <a class="link link-hover" href="/contact">Contact</a>
   </nav>
   <!-- Theme Switcher: Single Icon Toggle -->
-  <button id="theme-toggle" class="btn btn-ghost btn-xs ml-2 flex items-center justify-center" title="Switch theme" aria-label="Switch theme">
+  <button id="theme-toggle" class="btn btn-ghost btn-xs ml-2 flex items-center justify-center" title="Switch theme" aria-label="Switch theme" type="button">
     <span id="theme-icon" class="flex items-center justify-center"></span>
   </button>
   <script is:inline>
@@ -52,7 +52,8 @@
     function updateIcon(theme) {
       var idx = themes.findIndex(function(t) { return t.name === theme; });
       var icon = themes[idx]?.icon || themes[0].icon;
-      document.getElementById('theme-icon').innerHTML = icon;
+      var iconEl = document.getElementById('theme-icon');
+      if (iconEl) iconEl.innerHTML = icon;
     }
     function cycleTheme() {
       var current = getTheme();
@@ -62,10 +63,13 @@
       updateIcon(next);
     }
     document.addEventListener('DOMContentLoaded', function() {
-      var current = getTheme();
-      setTheme(current);
-      updateIcon(current);
-      document.getElementById('theme-toggle').onclick = cycleTheme;
+      setTimeout(function() {
+        var current = getTheme();
+        setTheme(current);
+        updateIcon(current);
+        var btn = document.getElementById('theme-toggle');
+        if (btn) btn.onclick = cycleTheme;
+      }, 0);
     });
   </script>
 </div>
