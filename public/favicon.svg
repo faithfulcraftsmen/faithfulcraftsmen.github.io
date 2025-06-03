@@ -1,17 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <circle cx="16" cy="16" r="15" fill="#E5C99A" stroke="#8B5C2A" stroke-width="2"/>
-  <g stroke="#8B5C2A" stroke-width="1.5" stroke-linecap="round">
-    <!-- Cross -->
-    <line x1="16" y1="8" x2="16" y2="24"/>
-    <line x1="11" y1="16" x2="21" y2="16"/>
-    <!-- Hammer -->
-    <line x1="10" y1="22" x2="16" y2="16"/>
-    <rect x="7" y="22" width="4" height="2" rx="0.5" fill="#8B5C2A"/>
-    <!-- Chisel -->
-    <line x1="22" y1="22" x2="16" y2="16"/>
-    <rect x="22" y="22" width="2" height="4" rx="0.5" fill="#8B5C2A"/>
-  </g>
-  <!-- Woodgrain rings -->
-  <circle cx="16" cy="16" r="11" stroke="#C2A477" stroke-width="0.7" fill="none"/>
-  <circle cx="16" cy="16" r="7" stroke="#C2A477" stroke-width="0.7" fill="none"/>
+  <!-- Realistic style: wood truck with bed and cab -->
+  <rect x="4" y="18" width="18" height="6" rx="2" fill="#E5C99A" stroke="#8B5C2A" stroke-width="1.5"/>
+  <rect x="16" y="14" width="8" height="6" rx="1.5" fill="#E5C99A" stroke="#8B5C2A" stroke-width="1.5"/>
+  <rect x="8" y="12" width="6" height="8" rx="2" fill="#E5C99A" stroke="#8B5C2A" stroke-width="1.5"/>
+  <circle cx="10" cy="26" r="2" fill="#C2A477" stroke="#8B5C2A" stroke-width="1"/>
+  <circle cx="22" cy="26" r="2" fill="#C2A477" stroke="#8B5C2A" stroke-width="1"/>
+  <!-- Truck window -->
+  <rect x="9" y="14" width="3" height="3" rx="0.7" fill="#fff8f0" stroke="#8B5C2A" stroke-width="0.5"/>
 </svg>
