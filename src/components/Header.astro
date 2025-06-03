@@ -1,3 +1,5 @@
+---
+---
 <div class="sticky top-0 z-30 flex h-16 w-full justify-between items-center px-4 bg-base-200 text-base-content shadow-sm bg-opacity-95 backdrop-blur transition-all duration-100">
   <!-- Branding/Logo -->
   <a class="flex items-center gap-2 btn btn-ghost normal-case text-xl px-2" href="/">
@@ -30,16 +32,40 @@
     <a class="link link-hover" href="/blog/">Blog</a>
     <a class="link link-hover" href="/contact">Contact</a>
   </nav>
-  <!-- Theme Switcher -->
-  <div class="flex gap-1">
-    <button class="btn btn-ghost btn-xs" title="Light" onclick="document.documentElement.setAttribute('data-theme', 'light'); localStorage.setItem('theme', 'light');">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m8.66-13.66l-.71.71M4.05 19.07l-.71.71M21 12h-1M4 12H3m16.66 5.66l-.71-.71M4.05 4.93l-.71-.71M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
-    </button>
-    <button class="btn btn-ghost btn-xs" title="Dark" onclick="document.documentElement.setAttribute('data-theme', 'dark'); localStorage.setItem('theme', 'dark');">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" /></svg>
-    </button>
-    <button class="btn btn-ghost btn-xs" title="Wood" onclick="document.documentElement.setAttribute('data-theme', 'wood'); localStorage.setItem('theme', 'wood');">
-      <span class="text-lg">🌲</span>
-    </button>
-  </div>
+  <!-- Theme Switcher: Single Icon Toggle -->
+  <button id="theme-toggle" class="btn btn-ghost btn-xs ml-2 flex items-center justify-center" title="Switch theme" aria-label="Switch theme">
+    <span id="theme-icon" class="flex items-center justify-center"></span>
+  </button>
+  <script is:inline>
+    var themes = [
+      { name: "light", icon: "<svg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 3v1m0 16v1m8.66-13.66l-.71.71M4.05 19.07l-.71.71M21 12h-1M4 12H3m16.66 5.66l-.71-.71M4.05 4.93l-.71-.71M16 12a4 4 0 11-8 0 4 4 0 018 0z' /></svg>" },
+      { name: "dark", icon: "<svg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z' /></svg>" },
+      { name: "wood", icon: "<span class='text-lg' style='display:inline-flex;align-items:center;line-height:1;'>🌲</span>" }
+    ];
+    function getTheme() {
+      return localStorage.getItem('theme') || 'light';
+    }
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+    }
+    function updateIcon(theme) {
+      var idx = themes.findIndex(function(t) { return t.name === theme; });
+      var icon = themes[idx]?.icon || themes[0].icon;
+      document.getElementById('theme-icon').innerHTML = icon;
+    }
+    function cycleTheme() {
+      var current = getTheme();
+      var idx = themes.findIndex(function(t) { return t.name === current; });
+      var next = themes[(idx + 1) % themes.length].name;
+      setTheme(next);
+      updateIcon(next);
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      var current = getTheme();
+      setTheme(current);
+      updateIcon(current);
+      document.getElementById('theme-toggle').onclick = cycleTheme;
+    });
+  </script>
 </div>
