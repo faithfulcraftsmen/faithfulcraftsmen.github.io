@@ -1,51 +1,43 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import HorizontalCard from "../components/HorizontalCard.astro";
 ---
 
-<BaseLayout title = "Projects" sideBarActiveItemID="projects">
-  <div>
-    <div class="text-3xl w-full font-bold mb-5">Projects Header</div>
+<BaseLayout sideBarActiveItemID="projects">
+  <div class="pb-12 mt-5">
+    <div class="text-5xl font-bold mb-2">Our Projects</div>
+    <div class="text-2xl font-semibold mb-4">A Glimpse Into Our Workshop</div>
+    <div class="text-lg mb-8">
+      Here you'll find a showcase of some of our favorite family woodworking projects—each one crafted with care, creativity, and faith. From classic wooden toys to custom gifts and home decor, every project tells a story!
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+      <div class="bg-base-200 rounded-xl p-6">
+        <div class="text-xl font-bold mb-2">Handcrafted Wooden Train Set</div>
+        <div class="mb-2">A classic train set made from maple and walnut, finished with child-safe oils. Each car is unique and built to last for generations.</div>
+        <img src="/projects/train-set/1.jpg" alt="Wooden Train Set" class="rounded-lg w-full mb-2" />
+      </div>
+      <div class="bg-base-200 rounded-xl p-6">
+        <div class="text-xl font-bold mb-2">Custom Name Puzzle</div>
+        <div class="mb-2">Personalized wooden name puzzles—perfect for birthdays and baby showers! Each letter is hand-cut and painted with non-toxic colors.</div>
+        <img src="/projects/name-puzzle/1.jpg" alt="Custom Name Puzzle" class="rounded-lg w-full mb-2" />
+      </div>
+      <div class="bg-base-200 rounded-xl p-6">
+        <div class="text-xl font-bold mb-2">Quality Custom Pens</div>
+        <div class="mb-2">We turn beautiful, one-of-a-kind pens from select hardwoods and acrylics. Each pen is carefully finished and makes a thoughtful gift for any occasion.</div>
+        <img src="/projects/custom-pen/1.jpg" alt="Custom Pen" class="rounded-lg w-full mb-2" />
+      </div>
+      <div class="bg-base-200 rounded-xl p-6">
+        <div class="text-xl font-bold mb-2">Keepsake Boxes & Small Gifts</div>
+        <div class="mb-2">Handmade keepsake boxes, jewelry holders, and other small treasures—each crafted with attention to detail and perfect for special occasions or everyday use.</div>
+        <img src="/projects/keepsake-box/1.jpg" alt="Keepsake Box" class="rounded-lg w-full mb-2" />
+      </div>
+      <div class="bg-base-200 rounded-xl p-6 md:col-span-2">
+        <div class="text-xl font-bold mb-2">Family Game Night: Wooden Board Games</div>
+        <div class="mb-2">We love making classic games like tic-tac-toe, checkers, and memory match from beautiful hardwoods. These games bring our family together and make great gifts!</div>
+        <img src="/projects/board-games/1.jpg" alt="Wooden Board Games" class="rounded-lg w-full mb-2" />
+      </div>
+    </div>
+    <div class="text-lg mb-6">
+      Want to see more or have a project idea? <a class="link link-accent" href="mailto:info@faithfulcraftsmen.com">Contact us</a>—we love custom work and new challenges!
+    </div>
   </div>
-
-  <HorizontalCard
-    title="Demo Project 1"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="NEW"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 2"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-  />
-
-  <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Projects Header</div>
-  </div>
-
-  <HorizontalCard
-    title="Demo Project 3"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="FOSS"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 4"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 5"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-  />
 </BaseLayout>
