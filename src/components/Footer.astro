@@ -3,7 +3,7 @@ const today = new Date();
 ---
 
 <footer class="bg-base-200 text-base-content py-6 mt-12 border-t">
-  <nav class="mb-6 border-b pb-4 flex justify-center gap-6 text-base">
+  <nav class="fixed bottom-0 left-0 w-full z-40 bg-base-200 border-t flex flex-wrap justify-center gap-4 sm:gap-6 text-base max-w-full overflow-x-auto px-2 md:static md:mb-6 md:border-b md:pb-4">
     <a class="link link-hover" href="/">Home</a>
     <a class="link link-hover" href="/about">About</a>
     <a class="link link-hover" href="/projects">Projects</a>
@@ -12,7 +12,7 @@ const today = new Date();
     <a class="link link-hover" href="/blog/">Blog</a>
     <a class="link link-hover" href="/contact">Contact</a>
   </nav>
-  <div class="max-w-4xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+  <div class="max-w-4xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 mt-16 md:mt-0">
     <div class="text-center md:text-left">
       <span class="font-bold">Faithful Craftsmen</span> © 2025<br />
       Handcrafted with heart, built on faith.
@@ -26,4 +26,24 @@ const today = new Date();
     </div>
   </div>
 </footer>
-<style></style>
+<style>
+  footer nav {
+    scrollbar-width: none;
+  }
+  footer nav::-webkit-scrollbar {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    footer nav {
+      position: static !important;
+      width: auto !important;
+      background: none !important;
+      border-top: none !important;
+      margin-bottom: 1.5rem !important;
+      padding-bottom: 1rem !important;
+    }
+    footer .max-w-4xl {
+      margin-top: 0 !important;
+    }
+  }
+</style>
