@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, getEntryBySlug } from "astro:content";
+import { Astro } from "astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const data = project.data ?? project;
+---
+
+<BaseLayout sideBarActiveItemID="projects">
+  <div class="max-w-3xl mx-auto py-10">
+    <div class="text-4xl font-bold mb-2">{data.title}</div>
+    {data.heroImage && (
+      <img src={data.heroImage} alt={data.title} class="rounded-lg mb-6 w-full max-h-96 object-cover" loading="lazy" />
+    )}
+    <div class="text-lg mb-6">{data.description}</div>
+    {project.body && (
+      <div class="prose dark:prose-invert wood:prose-amber" set:html={project.body} />
+    )}
+    {data.tags && (
+      <div class="mt-6 flex flex-wrap gap-2">
+        {data.tags.map(tag => (
+          <span class="badge badge-outline">{tag}</span>
+        ))}
+      </div>
+    )}
+  </div>
+</BaseLayout>

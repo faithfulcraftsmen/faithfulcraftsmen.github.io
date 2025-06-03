@@ -1,71 +1,56 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HorizontalCard from "../components/HorizontalCard.astro";
-import customPen from "../content/projects/custom-pen.md";
-import woodenToys from "../content/projects/wooden-toys.md";
-import namePuzzle from "../content/projects/name-puzzle.md";
-import keepsakeBox from "../content/projects/keepsake-box.md";
-import boardGames from "../content/projects/board-games.md";
+import { getCollection } from "astro:content";
 
-const customPenData = customPen.frontmatter ?? customPen;
-const woodenToysData = woodenToys.frontmatter ?? woodenToys;
-const namePuzzleData = namePuzzle.frontmatter ?? namePuzzle;
-const keepsakeBoxData = keepsakeBox.frontmatter ?? keepsakeBox;
-const boardGamesData = boardGames.frontmatter ?? boardGames;
+const projects = (await getCollection("projects"));
+const featured = projects.find((project) => project.data.featured === true);
+const rest = projects.filter((project) => project !== featured);
 ---
 
 <BaseLayout sideBarActiveItemID="projects">
   <div class="pb-12 mt-5">
-    <div class="text-5xl font-bold mb-2">Our Projects</div>
-    <div class="text-2xl font-semibold mb-4">A Glimpse Into Our Workshop</div>
-    <div class="text-lg mb-8">
-      Here you'll find a showcase of some of our favorite family woodworking projects—each one crafted with care, creativity, and faith. From classic wooden toys to custom gifts and home decor, every project tells a story!
+    <div class="text-5xl font-bold mb-6">Our Projects</div>
+    <div class="text-lg mb-10">
+      A showcase of our favorite family woodworking projects—crafted with care,
+      creativity, and faith. From classic toys to custom gifts, every project tells
+      a story!
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-      <HorizontalCard
-        title={woodenToysData.title}
-        img={woodenToysData.heroImage}
-        desc={woodenToysData.description}
-        url="/projects/wooden-toys/"
-        badge={woodenToysData.badge}
-        tags={woodenToysData.tags}
-      />
-      <HorizontalCard
-        title={customPenData.title}
-        img={customPenData.heroImage}
-        desc={customPenData.description}
-        url="/projects/custom-pen/"
-        badge={customPenData.badge}
-        tags={customPenData.tags}
-      />
-      <HorizontalCard
-        title={namePuzzleData.title}
-        img={namePuzzleData.heroImage}
-        desc={namePuzzleData.description}
-        url="/projects/name-puzzle/"
-        badge={namePuzzleData.badge}
-        tags={namePuzzleData.tags}
-      />
-      <HorizontalCard
-        title={keepsakeBoxData.title}
-        img={keepsakeBoxData.heroImage}
-        desc={keepsakeBoxData.description}
-        url="/projects/keepsake-box/"
-        badge={keepsakeBoxData.badge}
-        tags={keepsakeBoxData.tags}
-      />
-      <HorizontalCard
-        title={boardGamesData.title}
-        img={boardGamesData.heroImage}
-        desc={boardGamesData.description}
-        url="/projects/board-games/"
-        badge={boardGamesData.badge}
-        tags={boardGamesData.tags}
-        class="md:col-span-2"
-      />
-    </div>
-    <div class="text-lg mb-6">
-      Want to see more or have a project idea? <a class="link link-accent" href="mailto:info@faithfulcraftsmen.com">Contact us</a>—we love custom work and new challenges!
+    {featured && (
+      <>
+        <div class="mb-6">
+          <div class="badge badge-primary mb-2">Featured</div>
+          <HorizontalCard
+            title={featured.data.title}
+            img={featured.data.heroImage}
+            desc={featured.data.description}
+            url={`/projects/${featured.slug}/`}
+            badge={featured.data.badge || "Featured"}
+            tags={featured.data.tags}
+          />
+        </div>
+        <div class="divider my-6"></div>
+      </>
+    )}
+    {rest.map((project) => (
+      <>
+        <HorizontalCard
+          title={project.data.title}
+          img={project.data.heroImage}
+          desc={project.data.description}
+          url={`/projects/${project.slug}/`}
+          badge={project.data.badge}
+          tags={project.data.tags}
+        />
+        <div class="divider my-0" />
+      </>
+    ))}
+    <div class="text-lg mb-6 mt-8">
+      Want to see more or have a project idea?{" "}
+      <a class="link link-accent" href="mailto:info@faithfulcraftsmen.com">
+        Contact us
+      </a>
+      —we love custom work and new challenges!
     </div>
   </div>
 </BaseLayout>
