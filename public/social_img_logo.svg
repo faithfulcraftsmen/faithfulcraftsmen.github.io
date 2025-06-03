@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#F5EDE3"/>
+  <rect x="100" y="165" width="300" height="150" rx="30" fill="#E5C99A" stroke="#8B5C2A" stroke-width="8"/>
+  <rect x="340" y="110" width="160" height="120" rx="20" fill="#E5C99A" stroke="#8B5C2A" stroke-width="8"/>
+  <rect x="180" y="60" width="120" height="180" rx="20" fill="#E5C99A" stroke="#8B5C2A" stroke-width="8"/>
+  <circle cx="220" cy="370" r="40" fill="#C2A477" stroke="#8B5C2A" stroke-width="8"/>
+  <circle cx="380" cy="370" r="40" fill="#C2A477" stroke="#8B5C2A" stroke-width="8"/>
+  <rect x="200" y="120" width="60" height="60" rx="10" fill="#fff8f0" stroke="#8B5C2A" stroke-width="4"/>
+  <text x="520" y="270" font-size="110" font-family="Segoe UI, Arial, sans-serif" fill="#8B5C2A" font-weight="bold">Faithful Craftsmen</text>
+</svg>
