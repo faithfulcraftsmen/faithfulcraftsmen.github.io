@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import HorizontalCard from "../components/HorizontalCard.astro";
 import { getCollection } from "astro:content";
 import createSlug from "../lib/createSlug"
 
@@ -11,68 +10,22 @@ const last_posts = posts.slice(0, 3);
 
 <BaseLayout sideBarActiveItemID="home">
   <div class="pb-12 mt-5">
-    <div class="text-xl py-1">Hey there 👋</div>
-    <div class="text-5xl font-bold">I'm Manuel Ernesto</div>
-    <div class="text-3xl py-3 font-bold">Software Engineer and Entrepreneur</div>
+    <div class="text-xl py-1">Welcome to Faithful Craftsmen 👋</div>
+    <div class="text-5xl font-bold">A Family Workshop</div>
+    <div class="text-3xl py-3 font-bold">Handcrafted Projects & Stories</div>
     <div class="py-2">
-      <text class="text-lg">
-        This is <b>Astrofy</b> a free and open-source template for your Personal Portfolio Website built with Astro and TailwindCSS.
-        Create in minutes a website with Blog, CV, Project Section, Store and RSS Feed. I hope you find
-        it useful!
-      </text>
+      <span class="text-lg">
+        We are a small family shop—Dad and three sons—working together to build, create, and learn. Here you’ll find a collection of our current and past projects, stories from our workshop, and a glimpse into our lives as makers. We believe in quality, creativity, and the joy of working side by side as a family.
+        <br/><br/>
+        Join us on this blessed journey as we carve out a life rich in faith, family, and the beautiful art of woodworking. We welcome you to our virtual workshop—may it warm your heart and inspire your spirit as much as it does ours.
+        <br/><br/>
+        Explore our projects, read about our journey, and feel free to reach out if you’d like to connect or have something custom in mind. In the future, you’ll be able to order our handcrafted items right here!
+      </span>
     </div>
     <div class="mt-8">
-      <a class="btn" href="https://twitter.com/manuelernestog" target="_blank"> Let's connect!</a>
-      <a href="https://github.com/manuelernestog/astrofy" target="_blank" class="btn btn-outline ml-5">
-        Get This template
-      </a>
+      <a class="btn" href="mailto:info@faithfulcraftsmen.com">Contact Us</a>
+      <!-- You can add more buttons or links here as needed -->
     </div>
+    <!-- TODO: Add a beautiful family/shop branding image here -->
   </div>
-
-  <div>
-    <div class="text-3xl w-full font-bold mb-2">My last projects {"</>"}</div>
-  </div>
-
-  <HorizontalCard
-    title="Demo Project 1"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="NEW"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 2"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 3"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="FOSS"
-  />
-
-  <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
-  </div>
-
-  {
-    last_posts.map((post) => (
-      <>
-        <HorizontalCard
-          title={post.data.title}
-          img={post.data.heroImage}
-          desc={post.data.description}
-          url={"/blog/" + createSlug(post.data.title, post.slug)}
-          target="_self"
-          badge={post.data.badge}
-        />
-        <div class="divider my-0" />
-      </>
-    ))
-  }
 </BaseLayout>
