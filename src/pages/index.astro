@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import HorizontalCard from "../components/HorizontalCard.astro";
 ---
 
 <BaseLayout sideBarActiveItemID="home">
@@ -18,18 +19,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <div class="w-full max-w-2xl border-t-2 border-dashed border-base-300"></div>
     </div>
 
-    <!-- Featured Work Section (smaller, more compact) -->
+    <!-- Featured Project Section -->
     <div class="mb-10">
-      <h2 class="text-2xl font-bold mb-3 text-center">What We Make</h2>
-      <div class="flex flex-col md:flex-row gap-6 justify-center items-stretch max-w-3xl mx-auto">
-        <div class="bg-base-200 rounded-xl p-4 flex-1 flex flex-col items-center shadow min-w-[180px]">
-          <div class="text-lg font-bold mb-1">Wooden Toys</div>
-          <div class="text-sm text-center">Classic trains, cars, puzzles, and games—crafted for families to enjoy.</div>
-        </div>
-        <div class="bg-base-200 rounded-xl p-4 flex-1 flex flex-col items-center shadow min-w-[180px]">
-          <div class="text-lg font-bold mb-1">Custom Pens</div>
-          <div class="text-sm text-center">One-of-a-kind pens turned from select hardwoods—perfect for gifts.</div>
-        </div>
+      <h2 class="text-2xl font-bold mb-3 text-center">Featured Project</h2>
+      <div class="flex justify-center">
+        <HorizontalCard
+          title="Our Workshop"
+          img="/blog/our-workshop/cover.jpg"
+          desc="A look inside our family woodworking shop, our tools, and the heart of our craft."
+          url="/blog/our-workshop/"
+          badge="Behind the Scenes"
+          tags={["workshop", "family", "behind-the-scenes"]}
+        />
       </div>
     </div>
 
