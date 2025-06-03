@@ -3,9 +3,19 @@ const today = new Date();
 ---
 
 <footer class="bg-base-200 text-base-content py-6 mt-12 border-t">
+  <nav class="mb-6 border-b pb-4 flex justify-center gap-6 text-base">
+    <a class="link link-hover" href="/">Home</a>
+    <a class="link link-hover" href="/about">About</a>
+    <a class="link link-hover" href="/projects">Projects</a>
+    <a class="link link-hover" href="/services">Services</a>
+    <a class="link link-hover" href="/store">Store</a>
+    <a class="link link-hover" href="/blog/">Blog</a>
+    <a class="link link-hover" href="/contact">Contact</a>
+  </nav>
   <div class="max-w-4xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
     <div class="text-center md:text-left">
-      <span class="font-bold">Faithful Craftsmen</span> © 2025 &mdash; Handcrafted with heart, built on faith.
+      <span class="font-bold">Faithful Craftsmen</span> © 2025<br />
+      Handcrafted with heart, built on faith.
     </div>
     <div class="text-center text-sm italic">
       "Whatever you do, work heartily, as for the Lord and not for men."<br />
@@ -15,18 +25,5 @@ const today = new Date();
       Nickelsville, VA &nbsp;|&nbsp; <a class="link link-accent" href="mailto:info@faithfulcraftsmen.com">info@faithfulcraftsmen.com</a>
     </div>
   </div>
-  <nav class="mt-6 border-t pt-4 flex justify-center gap-6 text-base">
-    <a class="link link-hover" href="/">Home</a>
-    <a class="link link-hover" href="/about">About</a>
-    <a class="link link-hover" href="/projects">Projects</a>
-    <a class="link link-hover" href="/services">Services</a>
-    <a class="link link-hover" href="/store">Store</a>
-    <a class="link link-hover" href="/blog/">Blog</a>
-    <a class="link link-hover" href="/contact">Contact</a>
-    <a class="link link-hover flex items-center gap-1" href="/rss.xml" target="_blank" aria-label="RSS Feed" title="RSS Feed">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="inline-block"><path d="M19 20.001C19 11.729 12.271 5 4 5v2c7.168 0 13 5.832 13 13.001h2z"></path><path d="M12 20.001h2C14 14.486 9.514 10 4 10v2c4.411 0 8 3.589 8 8.001z"></path><circle cx="6" cy="18" r="2"></circle></svg>
-      RSS
-    </a>
-  </nav>
 </footer>
 <style></style>
