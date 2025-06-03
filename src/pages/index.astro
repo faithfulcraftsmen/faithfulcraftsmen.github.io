@@ -3,23 +3,87 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout sideBarActiveItemID="home">
-  <div class="pb-12 mt-5">
-    <div class="text-xl py-1">Welcome to Faithful Craftsmen 👋</div>
-    <div class="text-5xl font-bold">A Family Workshop</div>
-    <div class="text-3xl py-3 font-bold">Handcrafted Projects & Stories</div>
-    <div class="py-2">
-      <span class="text-lg">
+  <section class="pb-12 mt-5">
+    <!-- Hero Section -->
+    <div class="flex flex-col items-center text-center mb-10">
+      <h1 class="text-5xl font-bold mb-2">Faithful Craftsmen</h1>
+      <div class="text-2xl font-semibold mb-2">Handcrafted with Heart, Built on Faith</div>
+      <div class="text-lg max-w-2xl mb-4">
         We are a small family shop—Dad and three sons—working together to build, create, and learn. Here you’ll find a collection of our current and past projects, stories from our workshop, and a glimpse into our lives as makers. We believe in quality, creativity, and the joy of working side by side as a family.
-        <br/><br/>
-        Join us on this blessed journey as we carve out a life rich in faith, family, and the beautiful art of woodworking. We welcome you to our virtual workshop—may it warm your heart and inspire your spirit as much as it does ours.
-        <br/><br/>
-        Explore our projects, read about our journey, and feel free to reach out if you’d like to connect or have something custom in mind. In the future, you’ll be able to order our handcrafted items right here!
-      </span>
+      </div>
     </div>
-    <div class="mt-8">
-      <a class="btn" href="mailto:info@faithfulcraftsmen.com">Contact Us</a>
-      <!-- You can add more buttons or links here as needed -->
+
+    <!-- Section Divider -->
+    <div class="flex justify-center mb-10">
+      <div class="w-full max-w-2xl border-t-2 border-dashed border-base-300"></div>
     </div>
-    <!-- TODO: Add a beautiful family/shop branding image here -->
-  </div>
+
+    <!-- Featured Work Section (smaller, more compact) -->
+    <div class="mb-10">
+      <h2 class="text-2xl font-bold mb-3 text-center">What We Make</h2>
+      <div class="flex flex-col md:flex-row gap-6 justify-center items-stretch max-w-3xl mx-auto">
+        <div class="bg-base-200 rounded-xl p-4 flex-1 flex flex-col items-center shadow min-w-[180px]">
+          <div class="text-lg font-bold mb-1">Wooden Toys</div>
+          <div class="text-sm text-center">Classic trains, cars, puzzles, and games—crafted for families to enjoy.</div>
+        </div>
+        <div class="bg-base-200 rounded-xl p-4 flex-1 flex flex-col items-center shadow min-w-[180px]">
+          <div class="text-lg font-bold mb-1">Custom Pens</div>
+          <div class="text-sm text-center">One-of-a-kind pens turned from select hardwoods—perfect for gifts.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section Divider -->
+    <div class="flex justify-center mb-12">
+      <div class="w-full max-w-2xl border-t-2 border-dashed border-base-300"></div>
+    </div>
+
+    <!-- Meet the Family Section -->
+    <div class="mb-12">
+      <h2 class="text-3xl font-bold mb-4 text-center">Meet the Craftsmen</h2>
+      <div class="flex flex-col md:flex-row gap-8 items-center justify-center max-w-3xl mx-auto">
+        <img src="/faithfulcraftsmen_banner.png" alt="Family Workshop" class="w-full max-w-md rounded shadow mb-4 md:mb-0" />
+        <div class="text-lg text-left">
+          We are Kristopher (Dad) and sons—Braden, Bryson, and Bennett—working side by side in our Virginia workshop. Our mission: to build, learn, and grow together, sharing our faith and love of craft with every project.
+        </div>
+      </div>
+    </div>
+
+    <!-- Section Divider -->
+    <div class="flex justify-center mb-12">
+      <div class="w-full max-w-2xl border-t-2 border-dashed border-base-300"></div>
+    </div>
+
+    <!-- Services Section -->
+    <div class="mb-12">
+      <h2 class="text-3xl font-bold mb-4 text-center">Our Services</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div class="bg-base-200 rounded-xl p-5 text-center shadow">
+          <div class="font-bold text-lg mb-1">Handcrafted Wooden Toys</div>
+          <div class="text-base">Classic trains, cars, and puzzles—crafted for play and keepsakes.</div>
+        </div>
+        <div class="bg-base-200 rounded-xl p-5 text-center shadow">
+          <div class="font-bold text-lg mb-1">Quality Custom Pens</div>
+          <div class="text-base">Unique pens turned from fine hardwoods—perfect for gifts.</div>
+        </div>
+        <div class="bg-base-200 rounded-xl p-5 text-center shadow">
+          <div class="font-bold text-lg mb-1">Woodworking & Restoration</div>
+          <div class="text-base">Custom decor, repairs, and restoration for cherished wood items.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section Divider -->
+    <div class="flex justify-center mb-12">
+      <div class="w-full max-w-2xl border-t-2 border-dashed border-base-300"></div>
+    </div>
+
+    <!-- Faith & Values Section (no CTA buttons) -->
+    <div class="mb-12 max-w-3xl mx-auto text-center bg-base-200 rounded-xl p-8 shadow">
+      <div class="text-xl font-semibold mb-2">Rooted in Faith & Family</div>
+      <div class="text-base mb-2">We believe every project is a chance to honor God, grow as a family, and bless others with our hands and hearts.</div>
+      <div class="italic text-base opacity-80">“Whatever you do, work heartily, as for the Lord and not for men.”<br/><span class="not-italic">— Colossians 3:23</span></div>
+    </div>
+    <!-- Removed Shop/Contact CTA buttons -->
+  </section>
 </BaseLayout>
