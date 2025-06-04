@@ -4,9 +4,9 @@ import HorizontalCard from "../components/HorizontalCard.astro";
 ---
 
 <BaseLayout sideBarActiveItemID="home">
-  <section class="pb-12 mt-5">
+  <section class="pb-12 mt-8">
     <!-- Hero Section -->
-    <div class="flex flex-col items-center text-center mb-10">
+    <div class="flex flex-col items-center text-center mb-12">
       <h1 class="text-5xl font-bold mb-2">Faithful Craftsmen</h1>
       <div class="text-2xl font-semibold mb-2">Handcrafted with Heart, Built on Faith</div>
       <div class="text-lg max-w-2xl mb-4">
@@ -15,12 +15,12 @@ import HorizontalCard from "../components/HorizontalCard.astro";
     </div>
 
     <!-- Section Divider -->
-    <div class="flex justify-center mb-10">
+    <div class="flex justify-center mb-12">
       <div class="w-full max-w-2xl border-t-2 border-dashed border-base-300"></div>
     </div>
 
     <!-- Featured Project Section -->
-    <div class="mb-10">
+    <div class="mb-12">
       <h2 class="text-2xl font-bold mb-3 text-center">Featured Project</h2>
       <div class="flex justify-center">
         <HorizontalCard
@@ -55,6 +55,17 @@ import HorizontalCard from "../components/HorizontalCard.astro";
       <div class="w-full max-w-2xl border-t-2 border-dashed border-base-300"></div>
     </div>
 
+    <!-- Faith & Values Section -->
+    <div class="mb-12 max-w-3xl mx-auto text-center bg-base-200 rounded-xl p-8 shadow">
+      <div class="text-xl font-semibold mb-2">Rooted in Faith & Family</div>
+      <div class="text-base mb-2">We believe every project is a chance to honor God, grow as a family, and bless others with our hands and hearts.</div>
+      <div class="italic text-base opacity-80">“Whatever you do, work heartily, as for the Lord and not for men.”<br/><span class="not-italic">— Colossians 3:23</span></div>
+    </div>
+    <!-- Section Divider -->
+    <div class="flex justify-center mb-12">
+      <div class="w-full max-w-2xl border-t-2 border-dashed border-base-300"></div>
+    </div>
+
     <!-- Services Section -->
     <div class="mb-12">
       <h2 class="text-3xl font-bold mb-4 text-center">Our Services</h2>
@@ -79,12 +90,9 @@ import HorizontalCard from "../components/HorizontalCard.astro";
       <div class="w-full max-w-2xl border-t-2 border-dashed border-base-300"></div>
     </div>
 
-    <!-- Faith & Values Section (no CTA buttons) -->
-    <div class="mb-12 max-w-3xl mx-auto text-center bg-base-200 rounded-xl p-8 shadow">
-      <div class="text-xl font-semibold mb-2">Rooted in Faith & Family</div>
-      <div class="text-base mb-2">We believe every project is a chance to honor God, grow as a family, and bless others with our hands and hearts.</div>
-      <div class="italic text-base opacity-80">“Whatever you do, work heartily, as for the Lord and not for men.”<br/><span class="not-italic">— Colossians 3:23</span></div>
+    <!-- Call to Action/Scripture Section -->
+    <div class="mb-12">
+      <!-- Content for call to action or scripture -->
     </div>
-    <!-- Removed Shop/Contact CTA buttons -->
   </section>
 </BaseLayout>

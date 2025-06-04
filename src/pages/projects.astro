@@ -9,16 +9,16 @@ const rest = projects.filter((project) => project !== featured);
 ---
 
 <BaseLayout sideBarActiveItemID="projects">
-  <div class="pb-12 mt-5">
-    <div class="text-5xl font-bold mb-6">Our Projects</div>
-    <div class="text-lg mb-10">
+  <div class="pb-12 mt-8">
+    <div class="text-5xl font-bold mb-12">Our Projects</div>
+    <div class="text-lg mb-12">
       A showcase of our favorite family woodworking projects—crafted with care,
       creativity, and faith. From classic toys to custom gifts, every project tells
       a story!
     </div>
     {featured && (
       <>
-        <div class="mb-6">
+        <div class="mb-12">
           <div class="badge badge-primary mb-2">Featured</div>
           <HorizontalCard
             title={featured.data.title}
@@ -29,7 +29,7 @@ const rest = projects.filter((project) => project !== featured);
             tags={featured.data.tags}
           />
         </div>
-        <div class="divider my-6"></div>
+        <div class="divider my-12"></div>
       </>
     )}
     {rest.map((project) => (
@@ -45,12 +45,16 @@ const rest = projects.filter((project) => project !== featured);
         <div class="divider my-0" />
       </>
     ))}
-    <div class="text-lg mb-6 mt-8">
+    <div class="text-lg mb-12 mt-12">
       Want to see more or have a project idea?{" "}
       <a class="link link-accent" href="mailto:info@faithfulcraftsmen.com">
         Contact us
       </a>
       —we love custom work and new challenges!
     </div>
+  </div>
+  <!-- Section Divider -->
+  <div class="flex justify-center mb-12">
+    <div class="w-full max-w-2xl border-t-2 border-dashed border-base-300"></div>
   </div>
 </BaseLayout>

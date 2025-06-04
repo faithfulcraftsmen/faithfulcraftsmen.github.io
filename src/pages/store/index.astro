@@ -3,20 +3,24 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout sideBarActiveItemID="store">
-  <div class="pb-12 mt-5">
+  <div class="pb-12 mt-8">
     <div class="text-5xl font-bold mb-2">Our Store</div>
     <div class="text-2xl font-semibold mb-4">Handcrafted Goods & Toys</div>
-    <div class="text-lg mb-8">
+    <div class="text-lg mb-12">
       Browse our selection of family-made wooden creations! We specialize in handcrafted toys—trains, cars, trucks, games, and more—each made with care and creativity. We also offer custom furniture, decor, and gifts. If you have a special request or want a custom toy, <a class="link link-accent" href="mailto:info@faithfulcraftsmen.com">contact us</a>!
     </div>
     <!-- TODO: Display wooden toys as a featured section when store launches -->
-    <div class="flex flex-col items-start mb-8">
+    <div class="flex flex-col items-start mb-12">
       <div class="text-xs font-bold uppercase tracking-wider text-yellow-800 bg-yellow-100 border border-yellow-400 rounded px-3 py-1 mb-1 dark:bg-yellow-900 dark:text-yellow-100 dark:border-yellow-600 w-fit">
         Our online store is coming soon!
       </div>
       <div class="text-base">
         In the meantime, check our <a class="link link-accent" href="/about">About</a> or <a class="link link-accent" href="/services">Services</a> pages, or <a class="link link-accent" href="mailto:info@faithfulcraftsmen.com">contact us</a> for custom orders.
       </div>
+    </div>
+    <!-- Section Divider -->
+    <div class="flex justify-center mb-12">
+      <div class="w-full max-w-2xl border-t-2 border-dashed border-base-300"></div>
     </div>
   </div>
 </BaseLayout>
