@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://faithfulcraftsmen.github.io/sitemap-index.xml
+Sitemap: https://www.faithfulcraftsmen.com/sitemap-index.xml
