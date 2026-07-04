@@ -1,0 +1,14 @@
+---
+// Decorative woodgrain section divider. Purely presentational — reuses the
+// shared public/woodgrain-divider.svg so section breaks feel like the craft.
+const { class: className = "" } = Astro.props;
+---
+
+<div class={`flex justify-center mb-12 ${className}`}>
+  <img
+    src="/woodgrain-divider.svg"
+    alt=""
+    role="presentation"
+    class="w-full max-w-2xl h-8 opacity-80"
+  />
+</div>

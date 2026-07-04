@@ -1,10 +1,13 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import WoodDivider from "../components/WoodDivider.astro";
+import { Image } from "astro:assets";
+import banner from "../assets/faithfulcraftsmen_banner.png";
 ---
 
 <BaseLayout sideBarActiveItemID="about">
   <div class="pb-12 mt-8">
-    <img src="/faithfulcraftsmen_banner.png" alt="Faithful Craftsmen Banner" class="w-full max-w-2xl mx-auto rounded-lg shadow mb-8" />
+    <Image src={banner} alt="Faithful Craftsmen Banner" class="w-full max-w-2xl mx-auto rounded-lg shadow mb-8" loading="eager" />
     <div class="text-5xl font-bold mb-2">About Our Family Shop</div>
     <div class="text-2xl font-semibold mb-4">Faithful Craftsmen</div>
     <div class="text-lg mb-12">
@@ -36,10 +39,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <div class="text-lg mb-12">
       Thank you for visiting our virtual workshop. We hope our story and our work inspire you as much as this journey inspires us. If you’d like to connect, collaborate, or just say hello, we’d love to hear from you!
     </div>
-    <a class="btn" href="mailto:hello@faithfulcraftsmen.com">Contact Us</a>
+    <a class="btn btn-accent" href="mailto:hello@faithfulcraftsmen.com">Contact Us</a>
   </div>
-  <!-- Section Divider -->
-  <div class="flex justify-center mb-12">
-    <div class="w-full max-w-2xl border-t-2 border-dashed border-base-300"></div>
-  </div>
+  <WoodDivider />
 </BaseLayout>

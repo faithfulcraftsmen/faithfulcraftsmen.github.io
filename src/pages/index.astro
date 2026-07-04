@@ -1,6 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HorizontalCard from "../components/HorizontalCard.astro";
+import WoodDivider from "../components/WoodDivider.astro";
+import { Image } from "astro:assets";
+import banner from "../assets/faithfulcraftsmen_banner.png";
 ---
 
 <BaseLayout sideBarActiveItemID="home">
@@ -8,16 +11,17 @@ import HorizontalCard from "../components/HorizontalCard.astro";
     <!-- Hero Section -->
     <div class="flex flex-col items-center text-center mb-12">
       <h1 class="text-5xl font-bold mb-2">Faithful Craftsmen</h1>
-      <div class="text-2xl font-semibold mb-2">Handcrafted with Heart, Built on Faith</div>
-      <div class="text-lg max-w-2xl mb-4">
+      <div class="text-2xl font-semibold text-accent mb-2">Handcrafted with Heart, Built on Faith</div>
+      <div class="text-lg max-w-2xl mb-6">
         We are a small family shop—Dad and three sons—working together to build, create, and learn. Here you’ll find a collection of our current and past projects, stories from our workshop, and a glimpse into our lives as makers. We believe in quality, creativity, and the joy of working side by side as a family.
+      </div>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="/store" class="btn btn-accent">Visit the Shop</a>
+        <a href="/projects" class="btn btn-outline btn-accent">Browse Projects</a>
       </div>
     </div>
 
-    <!-- Section Divider -->
-    <div class="flex justify-center mb-12">
-      <div class="w-full max-w-2xl border-t-2 border-dashed border-base-300"></div>
-    </div>
+    <WoodDivider />
 
     <!-- Featured Project Section -->
     <div class="mb-12">
@@ -34,37 +38,35 @@ import HorizontalCard from "../components/HorizontalCard.astro";
       </div>
     </div>
 
-    <!-- Section Divider -->
-    <div class="flex justify-center mb-12">
-      <div class="w-full max-w-2xl border-t-2 border-dashed border-base-300"></div>
-    </div>
+    <WoodDivider />
 
     <!-- Meet the Family Section -->
     <div class="mb-12">
       <h2 class="text-3xl font-bold mb-4 text-center">Meet the Craftsmen</h2>
       <div class="flex flex-col md:flex-row gap-8 items-center justify-center max-w-3xl mx-auto">
-        <img src="/faithfulcraftsmen_banner.png" alt="Family Workshop" class="w-full max-w-md rounded shadow mb-4 md:mb-0" />
+        <Image
+          src={banner}
+          alt="The Faithful Craftsmen family in the workshop"
+          class="w-full max-w-md rounded-lg shadow-lg mb-4 md:mb-0"
+          loading="eager"
+        />
         <div class="text-lg text-left">
           We are Kristopher (the Dad) and sons—Braden, Bryson, and Bennett—working side by side in our Virginia workshop. Our mission: to build, learn, and grow together, sharing our faith and love of craft with every project.
         </div>
       </div>
     </div>
 
-    <!-- Section Divider -->
-    <div class="flex justify-center mb-12">
-      <div class="w-full max-w-2xl border-t-2 border-dashed border-base-300"></div>
-    </div>
+    <WoodDivider />
 
     <!-- Faith & Values Section -->
     <div class="mb-12 max-w-3xl mx-auto text-center bg-base-200 rounded-xl p-8 shadow">
+      <div class="text-3xl mb-2" aria-hidden="true">✝</div>
       <div class="text-xl font-semibold mb-2">Rooted in Faith & Family</div>
       <div class="text-base mb-2">We believe every project is a chance to honor God, grow as a family, and bless others with our hands and hearts.</div>
       <div class="italic text-base opacity-80">“Whatever you do, work heartily, as for the Lord and not for men.”<br/><span class="not-italic">— Colossians 3:23</span></div>
     </div>
-    <!-- Section Divider -->
-    <div class="flex justify-center mb-12">
-      <div class="w-full max-w-2xl border-t-2 border-dashed border-base-300"></div>
-    </div>
+
+    <WoodDivider />
 
     <!-- Services Section -->
     <div class="mb-12">
@@ -83,16 +85,6 @@ import HorizontalCard from "../components/HorizontalCard.astro";
           <div class="text-base">Custom decor, repairs, and restoration for cherished wood items.</div>
         </div>
       </div>
-    </div>
-
-    <!-- Section Divider -->
-    <div class="flex justify-center mb-12">
-      <div class="w-full max-w-2xl border-t-2 border-dashed border-base-300"></div>
-    </div>
-
-    <!-- Call to Action/Scripture Section -->
-    <div class="mb-12">
-      <!-- Content for call to action or scripture -->
     </div>
   </section>
 </BaseLayout>
