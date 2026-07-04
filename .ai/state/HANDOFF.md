@@ -53,12 +53,38 @@ correctly skips on PRs. The site builds. `astro check` surfaced 5 pre-existing t
 type errors (bad `import { Astro }`, deprecated `getEntryBySlug`/`AstroError`) — fixed in
 `blog/[slug].astro` and `projects/[slug].astro`.
 
-### Deferred (needs a Node/build env)
+## Workstream E + deps modernization (2026-07-04, continuation session)
 
-- Workstream E design polish (dividers, hero, faith accents) and the `<img>` → `<Image>`
-  refactor on `index.astro` / `projects/[slug].astro` — do these where the build can be
-  run and visually verified.
-- **Dependency modernization:** the Astrofy template ships known-vulnerable transitive deps
-  (npm audit: 11 high + 2 critical). The CI audit step is currently report-only
-  (`continue-on-error`). Do an `npm audit fix` / dependency-bump pass with a build to verify,
-  then flip the audit step back to blocking.
+Done on branch `feature/etsy-photos-email-standards` (PR #1), all build-verified in the
+**WSL Ubuntu Node 22** env. Three commits: `d96f6f6`, `6bd9484`, `4728f3c` (pushed).
+
+- **E — Design polish (done):** new `src/components/WoodDivider.astro` (reuses
+  `public/woodgrain-divider.svg`) replacing all inline dashed dividers on index + about;
+  homepage hero Store/Projects CTA buttons + `text-accent` tagline; ✝ faith accents in the
+  Faith section + footer; footer copyright wired to `{today.getFullYear()}` (also cleared the
+  unused-`today` astro-check warning).
+- **`<img>` → `<Image>` refactor (done):** moved `faithfulcraftsmen_banner.png` from
+  `public/` to `src/assets/` and rendered via `astro:assets <Image>` on index + about — the
+  build now optimizes it **1030kB PNG → 98kB webp**. `projects/[slug].astro` hero converted to
+  `<Image>` (public-path pattern, `width=1200 height=630 format="webp"`, mirrors
+  HorizontalCard).
+- **Deps modernization (done):** `npm audit fix` (non-`--force`) took **22 vulns → 4**,
+  clearing both criticals (fast-xml-parser, form-data) and all high-severity advisories of
+  concern. Only `package-lock.json` changed (all were transitive). CI audit step flipped from
+  report-only to **blocking at `--audit-level=critical`** (`.github/workflows/deploy.yml`).
+- **Verification:** `astro check` = 0 errors / 0 warnings; build = 15 pages, exit 0 (before
+  and after the audit fix). `npm audit --audit-level=critical` exits 0.
+
+### Still deferred
+
+- **Astro 5 → 7 major upgrade:** the last 4 vulns (3 low + 1 dev-server-only esbuild high,
+  GHSA-g7r4-m6w7-qqqr, not in the static prod build) only clear via `npm audit fix --force`,
+  which installs `astro@7.0.6` — a breaking major. Own task; needs its own test cycle. After
+  it lands, the CI audit gate can move from `critical` up to `high`.
+- **rss.xml warning:** pre-existing `/rss.xml` build warning (export casing in
+  `src/pages/rss.xml.js` — `get` vs `GET`). Non-fatal; small fix later.
+
+### Prior deferred (still open — owner/build actions)
+
+- Workstream E was previously blocked on a Node build env; that env (WSL Node 22) is now the
+  standard local build/verify path — see the `workstream-e-execution-plan` memory.
