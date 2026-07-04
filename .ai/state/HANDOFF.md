@@ -46,8 +46,19 @@ Plan: `pmo/PROJECT-PLAN-2026-07-etsy-photos-email-standards.md`.
 4. Drop real photos via the intake pipeline for `custom-bowls`, `wooden-toys`, and to
    replace root placeholders.
 
+### CI verification (2026-07-04)
+
+PR #1 CI is **green**: `validate` (astro check ✓) + `build` (astro build ✓) pass; `deploy`
+correctly skips on PRs. The site builds. `astro check` surfaced 5 pre-existing template
+type errors (bad `import { Astro }`, deprecated `getEntryBySlug`/`AstroError`) — fixed in
+`blog/[slug].astro` and `projects/[slug].astro`.
+
 ### Deferred (needs a Node/build env)
 
 - Workstream E design polish (dividers, hero, faith accents) and the `<img>` → `<Image>`
   refactor on `index.astro` / `projects/[slug].astro` — do these where the build can be
   run and visually verified.
+- **Dependency modernization:** the Astrofy template ships known-vulnerable transitive deps
+  (npm audit: 11 high + 2 critical). The CI audit step is currently report-only
+  (`continue-on-error`). Do an `npm audit fix` / dependency-bump pass with a build to verify,
+  then flip the audit step back to blocking.
