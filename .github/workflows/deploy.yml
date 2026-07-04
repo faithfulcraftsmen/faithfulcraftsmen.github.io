@@ -5,6 +5,9 @@ on:
   # Using a different branch name? Replace `main` with your branch’s name
   push:
     branches: [ main ]
+  # Validate (but don't deploy) pull requests targeting main.
+  pull_request:
+    branches: [ main ]
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
   # Daily rebuild so newly-added/updated Etsy listings appear on the site.
@@ -69,6 +72,8 @@ jobs:
 
   deploy:
     needs: build
+    # Never deploy from a pull request — only on push to main / manual / schedule.
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
