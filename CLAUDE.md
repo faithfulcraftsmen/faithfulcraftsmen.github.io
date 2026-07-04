@@ -1,138 +1,36 @@
-# faithfulcraftsmen.github.io — Claude Code Context
+# faithfulcraftsmen.github.io — Claude Code
 
-## What this repo is
+@AGENTS.md
 
-faithfulcraftsmen.github.io is a static site published via GitHub Pages for the faithfulcraftsmen organization.
+<!--
+  This file is a thin shim. All cross-tool repo instructions — identity, hard rules,
+  standards references, key facts, MCP bootstrap, and session protocol — live in
+  AGENTS.md, imported above via Claude Code's @path syntax (inlined at session launch).
+  Keep only genuinely Claude-Code-specific notes below.
+-->
 
----
+## Claude Code notes
 
-## ADO project details
+- Use **plan mode** before broad, repo-wide changes.
+- Follow the `.ai/` session protocol: read `.ai/state/*` at session start, and update `.ai/state/HANDOFF.md` before ending a session.
+- The repo-level subagent is `faithfulcraftsmen.github.io-engineer` (model: sonnet) — deep knowledge of this repo's structure, conventions, and development workflow.
+- User-level agents also available in every session: `triage-lookup`, `markdown-prose-editor`, `azurelocal-domain-expert`, `mkdocs-material-doctor`, `turner-module-scaffold-engineer`, `mms-2026-demo-presenter`.
+- See the [agents standard](https://platform.hybridsolutions.cloud/standards/agents/) for the full multi-model model.
 
-- **ADO org:** https://dev.azure.com/hybridcloudsolutions
-- **ADO project:** Faithful Craftsmen
-- **Area path:** Platform Engineering\Onboarding
-- **Work item format:** `AB#<id>` in commit messages and PR descriptions
-
----
-
-## Standards
-
-This repo follows all HCS platform standards defined in the Platform Engineering repo:
-
-| Standard | Reference |
-|---|---|
-| Governance | [docs/standards/governance.md](https://dev.azure.com/hybridcloudsolutions/Platform%20Engineering/_git/Platform%20Engineering?path=/docs/standards/governance.md) |
-| Scripting (PowerShell 7) | [docs/standards/scripting.md](https://dev.azure.com/hybridcloudsolutions/Platform%20Engineering/_git/Platform%20Engineering?path=/docs/standards/scripting.md) |
-| Automation | [docs/standards/automation.md](https://dev.azure.com/hybridcloudsolutions/Platform%20Engineering/_git/Platform%20Engineering?path=/docs/standards/automation.md) |
-| Variables and naming | [docs/standards/variables.md](https://dev.azure.com/hybridcloudsolutions/Platform%20Engineering/_git/Platform%20Engineering?path=/docs/standards/variables.md) |
-| Documentation | [docs/standards/documentation.md](https://dev.azure.com/hybridcloudsolutions/Platform%20Engineering/_git/Platform%20Engineering?path=/docs/standards/documentation.md) |
-| Claude Code | [docs/standards/claude-code.md](https://dev.azure.com/hybridcloudsolutions/Platform%20Engineering/_git/Platform%20Engineering?path=/docs/standards/claude-code.md) |
-
-Key rules:
-- All scripts: PowerShell 7+ only. `#Requires -Version 7.0`, `Set-StrictMode -Version Latest`, ` $ErrorActionPreference = 'Stop'`.
-- All docs: Markdown only. No Word documents in any repo.
-- Commit format: `type(scope): short description` — types: `feat`, `fix`, `docs`, `chore`, `refactor`, `test`
-- No secrets, tokens, or credentials committed to any file.
-
----
-
-## Key facts
-
-| Fact | Value |
-|---|---|
-| Primary language | Markdown / HTML |
-| GitHub org | faithfulcraftsmen |
-| Azure login | kris@hybridsolutions.cloud |
-| Key Vault | kv-hcs-vault-01 |
-
-### Environment variables expected
-
-| Variable | Source | Purpose |
-|---|---|---|
-| `GITHUB_TOKEN` | kv-hcs-vault-01 via Load-HCSEnvironment.ps1 | GitHub CLI and git operations |
-| `AZURE_DEVOPS_EXT_PAT` | kv-hcs-vault-01 via Load-HCSEnvironment.ps1 | ADO CLI (`az boards`, `az devops`) |
-Load before starting a session:
-```powershell
-. E:\git\platform\scripts\Load-HCSEnvironment.ps1
-```
-
-### Build and test commands
-
-```
-npm install
-npm run build
-npm run dev
-```
-
----
-
-## Repo structure
-
-```
-faithfulcraftsmen.github.io/
-├── .claude/
-    └── settings.json
-├── .github/
-    └── workflows/
-├── .vscode/
-    ├── extensions.json
-    └── launch.json
-├── public/
-    ├── blog/
-    ├── projects/
-    ├── faithfulcraftsmen_banner.png
-    ├── faithfulcraftsmen_logo.svg
-    └── favicon_train_cartoon.svg
-├── src/
-    ├── components/
-    ├── content/
-    ├── layouts/
-    ├── lib/
-    └── pages/
-├── .gitignore
-├── .npmrc
-├── astro.config.mjs
-├── CLAUDE.md
-├── LICENSE
-├── package-lock.json
-├── package.json
-├── tailwind.config.cjs
-├── TODO.md
-└── tsconfig.json
-```
-
----
-
-## Claude Code actions
+### Claude Code actions in this repo
 
 **Run autonomously:**
+
 - Read, search, and grep any file in this repo
 - Write and edit files in this repo
 - `git add`, `git commit`, `git push`
 - `gh issue`, `gh pr`, `gh run` CLI commands
-- `npm` or `bundle` commands for local preview
+- `npm` build/preview commands for local development (`npm install`, `npm run dev`, `npm run build`, `npm run preview`)
 
 **Always confirm before:**
+
 - Creating or deleting Azure resources
 - Any `az` CLI write operation that modifies Azure state
 - Running destructive operations
 - Making API calls to external services
-
-
----
-
-## Subagents available in this repo
-
-- `faithfulcraftsmen.github.io-engineer` (model: sonnet) — Expert in `faithfulcraftsmen.github.io`: deep knowledge of this repo's structure, conventions, and development workflow.
-
-User-level agents (available in every repo session): `triage-lookup`, `markdown-prose-editor`, `azurelocal-domain-expert`, `mkdocs-material-doctor`, `turner-module-scaffold-engineer`, `mms-2026-demo-presenter`.
-
----
-
-## Owner
-
-**Kristopher Turner**
-kris@hybridsolutions.cloud
-Senior Product Technology Architect, TierPoint | Microsoft MVP (Azure) | MCT
-Owner, Hybrid Cloud Solutions LLC — hybridsolutions.cloud
-Country Cloud Boy — thisismydemo.cloud
+- Triggering a GitHub Pages production deployment (push to `main`)

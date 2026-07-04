@@ -1,9 +1,12 @@
 # PostToolUse hook — logs tool usage to .claude/logs/tokens.jsonl
 # Event: PostToolUse Write|Edit
 # Input: JSON from stdin { tool_name, tool_input, tool_response }
-# Configure: set $logDir to your repo's .claude/logs/ path
+#Requires -Version 7.0
+Set-StrictMode -Version Latest
+$ErrorActionPreference = 'Stop'
 
-$logDir = "{{REPO_ROOT}}\.claude\logs"
+# .claude/logs/ derived from this script's location (.claude/hooks/)
+$logDir = Join-Path (Split-Path $PSScriptRoot -Parent) 'logs'
 
 $input_json = $input | Out-String
 try { $payload = $input_json | ConvertFrom-Json } catch { exit 0 }

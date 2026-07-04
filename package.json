@@ -1,14 +1,18 @@
 {
-  "name": "astrofy",
-  "description": "Astrofy is a free and open-source template for your Personal Portfolio Website built with Astro and TailwindCSS. Create in minutes a website with Blog, CV, Project Section, Store and RSS Feed.",
+  "name": "faithfulcraftsmen-site",
+  "description": "Faithful Craftsmen — public website for the family woodworking organization. Astro 5 static site (portfolio, blog, and Etsy-linked shop) published via GitHub Pages at www.faithfulcraftsmen.com.",
   "type": "module",
-  "version": "3.0.0",
+  "version": "1.0.0",
   "private": true,
+  "author": "Kristopher Turner <kris@hybridsolutions.cloud> (Hybrid Cloud Solutions LLC)",
+  "license": "MIT",
+  "homepage": "https://www.faithfulcraftsmen.com",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "check": "astro check",
     "astro": "astro"
   },
   "dependencies": {

@@ -1,6 +1,9 @@
 # PreToolUse hook — blocks writes containing secret patterns
 # Event: PreToolUse Write|Edit
 # Input: JSON from stdin { tool_name, tool_input: { file_path, content|new_string } }
+#Requires -Version 7.0
+Set-StrictMode -Version Latest
+$ErrorActionPreference = 'Stop'
 
 $input_json = $input | Out-String
 try { $payload = $input_json | ConvertFrom-Json } catch { exit 0 }

@@ -15,7 +15,29 @@ permissions:
   id-token: write
 
 jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your repository using git
+        uses: actions/checkout@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Type-check (astro check)
+        # @astrojs/check + typescript are installed ad hoc (not pinned in the
+        # lockfile) so `npm ci` stays reproducible for the build/deploy jobs.
+        run: |
+          npm install --no-save @astrojs/check typescript
+          npx astro check
+      - name: Dependency audit (fail on high/critical)
+        run: npm audit --audit-level=high
+
   build:
+    needs: validate
     runs-on: ubuntu-latest
     steps:
       - name: Checkout your repository using git
