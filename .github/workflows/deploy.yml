@@ -39,12 +39,14 @@ jobs:
         run: |
           npm install --no-save @astrojs/check typescript
           npx astro check
-      - name: Dependency audit (report only)
-        # Informational: the Astrofy template ships known-vulnerable transitive
-        # deps. Surface them without blocking deploys; clear them in a dedicated
-        # dependency-modernization pass (tracked in the pmo plan).
-        continue-on-error: true
-        run: npm audit --audit-level=high
+      - name: Dependency audit (blocking on critical)
+        # The 2026-07 modernization pass (`npm audit fix`) cleared both criticals
+        # and all high-severity advisories of concern (22 -> 4 vulns). This gate is
+        # now blocking at `critical` so any newly-introduced critical fails CI.
+        # NOT `--audit-level=high`: one dev-server-only esbuild high remains
+        # (GHSA-g7r4-m6w7-qqqr, absent from the static prod build) that only clears
+        # via the deferred Astro 7 major upgrade.
+        run: npm audit --audit-level=critical
 
   build:
     needs: validate
