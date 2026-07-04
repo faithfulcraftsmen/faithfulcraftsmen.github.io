@@ -1,0 +1,4 @@
+# Keeps the `store` content collection directory present in checkouts.
+# Store items are generated here at build time by scripts/Sync-EtsyListings.ps1
+# (filenames prefixed `etsy-`), and may also be hand-authored. Non-Markdown
+# files like this one are ignored by Astro's content loader.

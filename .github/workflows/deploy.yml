@@ -7,6 +7,9 @@ on:
     branches: [ main ]
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
+  # Daily rebuild so newly-added/updated Etsy listings appear on the site.
+  schedule:
+    - cron: '0 8 * * *'   # 08:00 UTC daily
 
 # Allow this job to clone the repo and create a page deployment
 permissions:
@@ -48,6 +51,17 @@ jobs:
           node-version: 20
       - name: Install dependencies
         run: npm ci
+      - name: Sync Etsy listings (skips if not configured)
+        shell: pwsh
+        env:
+          ETSY_API_KEY: ${{ secrets.ETSY_API_KEY }}
+          ETSY_SHOP_NAME: ${{ vars.ETSY_SHOP_NAME }}
+        run: |
+          if ([string]::IsNullOrWhiteSpace($env:ETSY_API_KEY) -or [string]::IsNullOrWhiteSpace($env:ETSY_SHOP_NAME)) {
+            Write-Host "ETSY_API_KEY / ETSY_SHOP_NAME not set — skipping Etsy sync; store shows existing content."
+            exit 0
+          }
+          ./scripts/Sync-EtsyListings.ps1
       - name: Build and upload your site
         uses: withastro/action@v3
         with:

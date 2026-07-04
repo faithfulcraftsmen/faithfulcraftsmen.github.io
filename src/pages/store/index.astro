@@ -1,5 +1,13 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import HorizontalCard from "../../components/HorizontalCard.astro";
+import { getCollection } from "astro:content";
+
+// Store items are synced from Etsy at build time (scripts/Sync-EtsyListings.ps1)
+// and may also be hand-authored. Sort newest-first by updatedDate.
+const items = (await getCollection("store")).sort(
+  (a, b) => b.data.updatedDate.valueOf() - a.data.updatedDate.valueOf()
+);
 ---
 
 <BaseLayout sideBarActiveItemID="store">
@@ -7,19 +15,42 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     <div class="text-5xl font-bold mb-2">Our Store</div>
     <div class="text-2xl font-semibold mb-4">Handcrafted Goods & Toys</div>
     <div class="text-lg mb-12">
-      Browse our selection of family-made wooden creations! We specialize in handcrafted toys—trains, cars, trucks, games, and more—each made with care and creativity. We also offer custom furniture, decor, and gifts. If you have a special request or want a custom toy, <a class="link link-accent" href="mailto:info@faithfulcraftsmen.com">contact us</a>!
+      Browse our selection of family-made wooden creations! We specialize in handcrafted toys—trains, cars, trucks, games, and more—each made with care and creativity. We also offer custom furniture, decor, and gifts. If you have a special request or want a custom toy, <a class="link link-accent" href="mailto:hello@faithfulcraftsmen.com">contact us</a>!
     </div>
-    <!-- TODO: Display wooden toys as a featured section when store launches -->
-    <div class="flex flex-col items-start mb-12">
-      <div class="text-xs font-bold uppercase tracking-wider text-yellow-800 bg-yellow-100 border border-yellow-400 rounded px-3 py-1 mb-1 dark:bg-yellow-900 dark:text-yellow-100 dark:border-yellow-600 w-fit">
-        Our online store is coming soon!
+
+    {items.length > 0 ? (
+      <>
+        {items.map((item) => (
+          <>
+            <HorizontalCard
+              title={item.data.title}
+              img={item.data.heroImage}
+              desc={item.data.description}
+              url={`/store/${item.slug}/`}
+              badge={item.data.badge}
+              pricing={item.data.pricing}
+              oldPricing={item.data.oldPricing}
+              checkoutUrl={item.data.checkoutUrl}
+              custom_link={item.data.custom_link}
+              custom_link_label={item.data.custom_link_label}
+            />
+            <div class="divider my-0" />
+          </>
+        ))}
+      </>
+    ) : (
+      <div class="flex flex-col items-start mb-12">
+        <div class="text-xs font-bold uppercase tracking-wider text-yellow-800 bg-yellow-100 border border-yellow-400 rounded px-3 py-1 mb-1 dark:bg-yellow-900 dark:text-yellow-100 dark:border-yellow-600 w-fit">
+          Our online store is coming soon!
+        </div>
+        <div class="text-base">
+          In the meantime, check our <a class="link link-accent" href="/about">About</a> or <a class="link link-accent" href="/services">Services</a> pages, or <a class="link link-accent" href="mailto:hello@faithfulcraftsmen.com">contact us</a> for custom orders.
+        </div>
       </div>
-      <div class="text-base">
-        In the meantime, check our <a class="link link-accent" href="/about">About</a> or <a class="link link-accent" href="/services">Services</a> pages, or <a class="link link-accent" href="mailto:info@faithfulcraftsmen.com">contact us</a> for custom orders.
-      </div>
-    </div>
+    )}
+
     <!-- Section Divider -->
-    <div class="flex justify-center mb-12">
+    <div class="flex justify-center mb-12 mt-12">
       <div class="w-full max-w-2xl border-t-2 border-dashed border-base-300"></div>
     </div>
   </div>
