@@ -1,39 +1,53 @@
 # Handoff
 
-## Multi-model canonical layout: AGENTS.md + CLAUDE.md shim + `.ai/` workspace (this session)
+## Etsy + photos + email + standards initiative (2026-07-04)
 
-- **What changed and why:** brought this repo into the HCS canonical multi-model layout
-  (Workstream D of `pmo/PROJECT-PLAN-2026-07-etsy-photos-email-standards.md`), modeled on
-  the `platform` repo's dogfooded reference implementation.
-- **Files touched:**
-  - New: `AGENTS.md` (canonical cross-tool instructions — MCP bootstrap, offline fallback
-    digest, session protocol, key facts, owner).
-  - Overwritten: `CLAUDE.md` — converted from a full context doc into a thin shim that
-    imports `AGENTS.md` via `@AGENTS.md` and keeps only Claude-Code-specific notes.
-  - New: `.ai/mcp/mcp-servers.md`, `.ai/memory/PROJECT_CONTEXT.md`,
-    `.ai/memory/DECISIONS.md`, `.ai/memory/COMMANDS.md`, `.ai/memory/GOTCHAS.md`,
-    `.ai/state/CURRENT_TASK.md`, `.ai/state/HANDOFF.md` (this file),
-    `.ai/state/OPEN_QUESTIONS.md`.
-- **Commands / tests run:** none — this was a documentation-only pass. No `npm install`/
-  `npm run build` run in this session.
-- **Branch:** `feature/etsy-photos-email-standards` (per the project plan's owner —
-  confirm the actual branch name in use before continuing; this handoff entry assumes it
-  per the task brief). Not committed as of this entry — confirm with the operator before
-  committing/pushing.
-- **Blockers:** none for this workstream's remaining items, but see
-  `.ai/state/OPEN_QUESTIONS.md` for items that block Workstreams B and C.
-- **Exact next steps (remaining Workstream D items):**
-  1. Fix `LICENSE` copyright holder (currently the upstream Astrofy template author).
-  2. Fill in `README.md` placeholders (real prerequisites, quick start, resolve license
-     section to MIT-only).
-  3. Add PS7 headers (`#Requires -Version 7.0`, `Set-StrictMode -Version Latest`,
-     `$ErrorActionPreference = 'Stop'`) to every `.claude/hooks/*.ps1` script.
-  4. Decide: wire `format-on-write.ps1` + `check-context.ps1` into `.claude/settings.json`,
-     or remove them if unused.
-  5. Update `package.json` `name`/`description`/author away from the inherited `"astrofy"`
-     template identity.
-  6. Add a CI validation stage (lint / `astro check` / `npm audit`) to
-     `.github/workflows/deploy.yml` before the deploy step.
-  7. Add `public/CNAME` = `www.faithfulcraftsmen.com` — **only after** confirming the
-     current GitHub Pages custom-domain setting (see `OPEN_QUESTIONS.md`).
-  8. Then move on to Workstream A (photo intake pipeline).
+Branch: **`feature/etsy-photos-email-standards`** — committed, ready for PR.
+Plan: `pmo/PROJECT-PLAN-2026-07-etsy-photos-email-standards.md`.
+
+### What shipped (Workstreams A–D)
+
+- **D — Standards (done):** `AGENTS.md` + `CLAUDE.md` shim + 8-file `.ai/` workspace;
+  `LICENSE` holder fixed (upstream attribution kept); `README.md` completed;
+  `package.json` identity; PS7 headers on all `.claude/hooks/*.ps1` + fixed the
+  `{{REPO_ROOT}}` placeholder bug in log-tokens/summarize-session; removed dead hooks
+  (format-on-write no-op, check-context duplicate); CI `validate` job (`astro check` +
+  `npm audit`); `public/CNAME` = www.faithfulcraftsmen.com.
+- **A — Photos (done):** gitignored `intake/` drop zone + `intake/README.md`;
+  `scripts/Optimize-Intake.ps1` + `scripts/optimize-image.mjs` (sharp → webp, EXIF
+  stripped, full+card variants); fixed `custom-bowls.md` (was a verbatim copy of
+  custom-pen).
+- **B — Etsy (done, needs credentials):** `scripts/Sync-EtsyListings.ps1` (v3 API, API-key
+  auth, generates `etsy-<id>.md`, downloads photos); `store/index.astro` wired to the
+  collection with empty-state; `store/[slug].astro` → `StoreItemLayout`; `featured` added
+  to blog+project schemas; demo store items removed; CI sync step + daily cron.
+- **C — Email (site done, Cloudflare pending):** all `info@` → `hello@` across the site;
+  `pmo/RUNBOOK-cloudflare-email-aliases.md`.
+
+### Verification status
+
+- **PowerShell scripts:** parse-checked under pwsh 7.6; preflights tested (friendly errors
+  without Node / without ETSY_API_KEY); YAML escaper unit-checked. ✅
+- **Astro build / `astro check`:** NOT run — **Node.js is not installed on this machine**.
+  The site build, `astro check`, and the intake/Etsy scripts' happy paths are unverified
+  locally. First real verification happens in the CI `validate`/`build` jobs on push.
+  Watch that run.
+
+### Owner actions still required (external)
+
+1. Register a free Etsy developer app → get the API keystring. Add `ETSY_API_KEY`
+   (GitHub Actions **secret**) and `ETSY_SHOP_NAME` (repo **variable**). Until then the
+   store shows its empty state and CI skips the sync.
+2. Cloudflare Email Routing: follow `pmo/RUNBOOK-cloudflare-email-aliases.md` to create
+   `shop@`/`hello@`/`contact@` + catch-all → `kris@hybridsolutions.cloud`, then register
+   the Etsy store with `shop@`.
+3. Confirm the GitHub Pages custom-domain setting still matches `public/CNAME`
+   (`www.faithfulcraftsmen.com`) after the first deploy from this branch.
+4. Drop real photos via the intake pipeline for `custom-bowls`, `wooden-toys`, and to
+   replace root placeholders.
+
+### Deferred (needs a Node/build env)
+
+- Workstream E design polish (dividers, hero, faith accents) and the `<img>` → `<Image>`
+  refactor on `index.astro` / `projects/[slug].astro` — do these where the build can be
+  run and visually verified.

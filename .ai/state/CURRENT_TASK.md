@@ -8,12 +8,14 @@ Etsy → Email → Design polish.
 
 | Workstream | Status |
 |---|---|
-| D — HCS standards: full compliance | **In progress** — `AGENTS.md`, `CLAUDE.md` shim, and the `.ai/` workspace (this file) landed this session. Remaining: `LICENSE` holder fix, `README.md` fill-in, PS7 headers on `.claude/hooks/*.ps1`, unwired hooks decision, `package.json` identity, CI validation stage, `public/CNAME`. |
-| A — Photo intake pipeline | Not started. `intake/` folder, `.gitignore` rules, `scripts/Optimize-Intake.ps1` all pending. |
-| B — Etsy store integration | Not started. `scripts/Sync-EtsyListings.ps1`, store page wiring, `featured` schema fix all pending. |
-| C — Cloudflare email aliases | Not started. Blocked on confirming `faithfulcraftsmen.com` is on Cloudflare with Email Routing (see `OPEN_QUESTIONS.md`). |
-| E — Design & content polish | Not started (folds in the pre-existing `TODO.md` backlog). |
+| D — HCS standards: full compliance | **Done** — AGENTS.md, CLAUDE.md shim, `.ai/` workspace, LICENSE, README, package.json, PS7 hook headers (+ `{{REPO_ROOT}}` bug fix), dead-hook removal, CI validate job, `public/CNAME`. |
+| A — Photo intake pipeline | **Done** — `intake/` + README, `Optimize-Intake.ps1` + `optimize-image.mjs`, custom-bowls copy fix. Owner still drops real photos. |
+| B — Etsy store integration | **Done (needs credentials)** — `Sync-EtsyListings.ps1`, store pages wired, `featured` schema fix, demos removed, CI sync + cron. Owner registers Etsy app + sets `ETSY_API_KEY`/`ETSY_SHOP_NAME`. |
+| C — Cloudflare email aliases | **Site done; Cloudflare pending** — site on `hello@`, runbook written. Owner creates aliases per `pmo/RUNBOOK-cloudflare-email-aliases.md`. |
+| E — Design & content polish | **Deferred** — needs a Node/Astro build env to verify (incl. `<img>`→`<Image>` refactor). |
 
-See the full plan for detail, decisions, and the checkbox-level progress tracker.
+Everything is on branch `feature/etsy-photos-email-standards`. **No local Astro build was
+possible (Node not installed) — first verification is the CI run on push.** See
+`HANDOFF.md` for owner actions and the full plan for the checkbox tracker.
 
 <!-- suggested-model: sonnet -->

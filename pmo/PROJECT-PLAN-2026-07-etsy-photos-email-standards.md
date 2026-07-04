@@ -198,42 +198,47 @@ MX + SPF + DKIM) → create the three custom rules → enable catch-all. Then re
 
 ## Progress tracker
 
-### Foundation & standards (D)
-- [ ] `AGENTS.md` added with MCP-first block
-- [ ] `CLAUDE.md` converted to thin shim
-- [ ] `.ai/` workspace (8 files) created
-- [ ] `LICENSE` holder corrected
-- [ ] `README.md` completed
-- [ ] PS7 headers on all `.claude/hooks/*.ps1` + `scripts/*.ps1`
-- [ ] Unwired hooks wired or removed
-- [ ] `package.json` identity updated
-- [ ] CI validation stage (`astro check` + audit)
-- [ ] `public/CNAME` added
+> Status as of 2026-07-04: Workstreams A–D delivered on branch
+> `feature/etsy-photos-email-standards`. Remaining items are either external
+> actions (Etsy app, Cloudflare) or need a Node/Astro build to verify (design polish).
 
-### Photo pipeline (A)
-- [ ] `intake/` folder + `.gitignore` rules + `intake/README.md`
-- [ ] `scripts/Optimize-Intake.ps1`
-- [ ] Fix `custom-bowls.md` (image + copy)
-- [ ] Real photos for `custom-bowls`, `wooden-toys`
-- [ ] Replace root placeholder images
-- [ ] `[slug].astro` + `index.astro` use `<Image>`
+### Foundation & standards (D) — DONE
+- [x] `AGENTS.md` added with MCP-first block
+- [x] `CLAUDE.md` converted to thin shim
+- [x] `.ai/` workspace (8 files) created
+- [x] `LICENSE` holder corrected (upstream attribution kept)
+- [x] `README.md` completed
+- [x] PS7 headers on all `.claude/hooks/*.ps1` + `scripts/*.ps1`
+- [x] Unwired hooks removed (format-on-write, check-context); `{{REPO_ROOT}}` bug fixed
+- [x] `package.json` identity updated
+- [x] CI validation stage (`astro check` + `npm audit`)
+- [x] `public/CNAME` added
 
-### Etsy (B)
-- [ ] Register Etsy developer app; capture shop name/URL
-- [ ] `scripts/Sync-EtsyListings.ps1`
-- [ ] Wire `store/index.astro` to the collection
-- [ ] `store/[slug].astro` → `StoreItemLayout`
-- [ ] `featured` added to schemas
-- [ ] Delete demo store items
-- [ ] CI sync step + daily cron
+### Photo pipeline (A) — DONE (photos to be added by owner)
+- [x] `intake/` folder + `.gitignore` rules + `intake/README.md`
+- [x] `scripts/Optimize-Intake.ps1` (+ `scripts/optimize-image.mjs`)
+- [x] Fix `custom-bowls.md` (copy rewritten; heroImage → intake target path)
+- [ ] Real photos for `custom-bowls`, `wooden-toys` (owner drops via intake)
+- [ ] Replace root placeholder images (owner)
+- [ ] `[slug].astro` + `index.astro` use `<Image>` — **deferred: needs local build to verify**
 
-### Email (C)
-- [ ] Verify destination `kris@hybridsolutions.cloud`
-- [ ] Create `shop@`, `hello@`, `contact@` + catch-all
-- [ ] Register Etsy store with `shop@`
-- [ ] Wire contact page + footer to `hello@`
+### Etsy (B) — DONE (needs Etsy app credentials to go live)
+- [ ] Register Etsy developer app; capture shop name/URL (owner)
+- [x] `scripts/Sync-EtsyListings.ps1`
+- [x] Wire `store/index.astro` to the collection (graceful empty state)
+- [x] `store/[slug].astro` → `StoreItemLayout`
+- [x] `featured` added to schemas
+- [x] Delete demo store items
+- [x] CI sync step + daily cron (skips until secret/var set)
 
-### Design polish (E — migrated from TODO.md)
+### Email (C) — site DONE; Cloudflare pending (runbook ready)
+- [ ] Verify destination `kris@hybridsolutions.cloud` (owner, per runbook)
+- [ ] Create `shop@`, `hello@`, `contact@` + catch-all (owner, per runbook)
+- [ ] Register Etsy store with `shop@` (owner)
+- [x] Wire contact page + footer to `hello@`
+- [x] `pmo/RUNBOOK-cloudflare-email-aliases.md`
+
+### Design polish (E — migrated from TODO.md; deferred until a build env is available)
 - [ ] Section dividers (woodgrain SVG)
 - [ ] Striking homepage hero (banner + tagline + CTA)
 - [ ] Responsive grids for project/team sections
