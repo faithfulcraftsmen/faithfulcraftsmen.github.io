@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getCollection, getEntryBySlug } from "astro:content";
-import { Astro } from "astro";
+import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
@@ -12,7 +11,7 @@ export async function getStaticPaths() {
 }
 
 const { project } = Astro.props;
-const data = project.data ?? project;
+const data = project.data;
 ---
 
 <BaseLayout sideBarActiveItemID="projects">
