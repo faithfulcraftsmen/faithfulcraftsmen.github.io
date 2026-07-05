@@ -5,8 +5,14 @@ on:
   # Using a different branch name? Replace `main` with your branch’s name
   push:
     branches: [ main ]
+  # Validate (but don't deploy) pull requests targeting main.
+  pull_request:
+    branches: [ main ]
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
+  # Daily rebuild so newly-added/updated Etsy listings appear on the site.
+  schedule:
+    - cron: '0 8 * * *'   # 08:00 UTC daily
 
 # Allow this job to clone the repo and create a page deployment
 permissions:
@@ -15,7 +21,35 @@ permissions:
   id-token: write
 
 jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your repository using git
+        uses: actions/checkout@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Type-check (astro check)
+        # @astrojs/check + typescript are installed ad hoc (not pinned in the
+        # lockfile) so `npm ci` stays reproducible for the build/deploy jobs.
+        run: |
+          npm install --no-save @astrojs/check typescript
+          npx astro check
+      - name: Dependency audit (blocking on critical)
+        # The 2026-07 modernization pass (`npm audit fix`) cleared both criticals
+        # and all high-severity advisories of concern (22 -> 4 vulns). This gate is
+        # now blocking at `critical` so any newly-introduced critical fails CI.
+        # NOT `--audit-level=high`: one dev-server-only esbuild high remains
+        # (GHSA-g7r4-m6w7-qqqr, absent from the static prod build) that only clears
+        # via the deferred Astro 7 major upgrade.
+        run: npm audit --audit-level=critical
+
   build:
+    needs: validate
     runs-on: ubuntu-latest
     steps:
       - name: Checkout your repository using git
@@ -26,6 +60,17 @@ jobs:
           node-version: 20
       - name: Install dependencies
         run: npm ci
+      - name: Sync Etsy listings (skips if not configured)
+        shell: pwsh
+        env:
+          ETSY_API_KEY: ${{ secrets.ETSY_API_KEY }}
+          ETSY_SHOP_NAME: ${{ vars.ETSY_SHOP_NAME }}
+        run: |
+          if ([string]::IsNullOrWhiteSpace($env:ETSY_API_KEY) -or [string]::IsNullOrWhiteSpace($env:ETSY_SHOP_NAME)) {
+            Write-Host "ETSY_API_KEY / ETSY_SHOP_NAME not set — skipping Etsy sync; store shows existing content."
+            exit 0
+          }
+          ./scripts/Sync-EtsyListings.ps1
       - name: Build and upload your site
         uses: withastro/action@v3
         with:
@@ -33,6 +78,8 @@ jobs:
 
   deploy:
     needs: build
+    # Never deploy from a pull request — only on push to main / manual / schedule.
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     environment:
       name: github-pages

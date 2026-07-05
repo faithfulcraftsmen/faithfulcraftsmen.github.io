@@ -1,25 +1,30 @@
 # faithfulcraftsmen.github.io
 
-faithfulcraftsmen.github.io is a static site published via GitHub Pages for the faithfulcraftsmen organization.
+The public website for **Faithful Craftsmen** — a family woodworking organization. It's an
+[Astro 5](https://astro.build) static site (portfolio, blog, and an Etsy-linked shop), published via
+GitHub Pages at **[www.faithfulcraftsmen.com](https://www.faithfulcraftsmen.com)**.
+
+> Agent/AI instructions live in [`AGENTS.md`](AGENTS.md) (imported by [`CLAUDE.md`](CLAUDE.md)).
+> The active project plan lives in [`pmo/`](pmo/).
 
 ---
 
-## What this is
+## Stack
 
-faithfulcraftsmen.github.io is a static site published via GitHub Pages for the faithfulcraftsmen organization.
+- **Astro 5** (Astrofy template) with content collections: `blog`, `projects`, `store`
+- **Tailwind CSS + daisyUI** — themes `light` / `dark` / `wood` (custom warm-wood palette)
+- **MDX**, `@astrojs/sitemap`, `@astrojs/rss`, and `astro:assets` (sharp) image optimization
+- Deployed by GitHub Actions (`.github/workflows/deploy.yml`) to GitHub Pages on push to `main`
 
 ---
 
 ## Prerequisites
 
-Before using this project, you need:
+- **Node.js 20+** and npm (`winget install OpenJS.NodeJS.LTS`)
+- **PowerShell 7+** (`winget install Microsoft.PowerShell`) — for the automation in `scripts/`
+- **Azure CLI** + **GitHub CLI** — only needed for HCS environment/secret loading and releases
 
-- PowerShell 7+ (`winget install Microsoft.PowerShell`)
-- Azure CLI (`winget install Microsoft.AzureCLI`) — logged in as kris@hybridsolutions.cloud
-- GitHub CLI (`winget install GitHub.cli`) — authenticated via `hcs-github-org-pat`
-- {{Any other tools, runtimes, or SDKs this project requires}}
-
-Load required environment variables before starting:
+Optional, for scripts that read secrets (e.g. the Etsy sync) — load the HCS environment first:
 
 ```powershell
 . E:\git\platform\scripts\Load-HCSEnvironment.ps1
@@ -30,44 +35,63 @@ Load required environment variables before starting:
 ## Quick start
 
 ```powershell
-# {{Step 1 — clone or navigate to the repo}}
-cd E:\git\{{repo-name}}
-
-# {{Step 2 — any setup steps}}
-
-# {{Step 3 — the primary command to run or build}}
+# From the repo root
+npm install        # install dependencies
+npm run dev        # local dev server at http://localhost:4321
+npm run build      # production build to ./dist
+npm run preview    # preview the production build locally
 ```
 
 ---
 
-## Documentation
+## Repo structure
 
-{{If a doc site exists, link it here. Otherwise link to key Markdown files.}}
+```text
+faithfulcraftsmen.github.io/
+├── AGENTS.md               # canonical cross-tool agent instructions
+├── CLAUDE.md               # thin shim → AGENTS.md
+├── .ai/                    # AI session workspace (memory + state)
+├── pmo/                    # project plans
+├── public/                 # static assets (images, CNAME, robots.txt)
+├── scripts/                # PowerShell 7 automation (photo intake, Etsy sync)
+├── src/
+│   ├── components/         # HorizontalCard, Header, Footer, ...
+│   ├── content/            # blog / projects / store collections + config.ts
+│   ├── layouts/            # BaseLayout, PostLayout, StoreItemLayout
+│   ├── pages/              # routes (index, projects, blog, store, ...)
+│   └── lib/                # helpers
+├── astro.config.mjs
+└── tailwind.config.cjs
+```
 
-| Doc | Description |
-|---|---|
-| [{{doc name}}](docs/{{file}}.md) | {{what it covers}} |
+---
+
+## Content
+
+- **Projects / portfolio** — one Markdown file per piece in `src/content/projects/`, with photos under
+  `public/projects/<slug>/`. New photos go through the intake pipeline (see `intake/README.md`).
+- **Blog** — `src/content/blog/`.
+- **Store** — `src/content/store/`; items link out to Etsy for checkout via each item's `checkoutUrl`.
 
 ---
 
 ## Contributing
 
-1. Create a feature branch: `git checkout -b feature/short-description`
-2. Make changes following the [scripting](https://dev.azure.com/hybridcloudsolutions/Platform%20Engineering/_git/Platform%20Engineering?path=/docs/standards/scripting.md) and [documentation](https://dev.azure.com/hybridcloudsolutions/Platform%20Engineering/_git/Platform%20Engineering?path=/docs/standards/documentation.md) standards
-3. Commit with `type(scope): description` format and link an ADO work item (`AB#<id>`)
-4. Open a PR and link it to the ADO work item
+1. Branch: `git checkout -b feature/short-description`
+2. Follow the HCS [scripting](https://platform.hybridsolutions.cloud/standards/scripting/) and
+   [documentation](https://platform.hybridsolutions.cloud/standards/documentation/) standards
+   (PowerShell 7 for scripts, Markdown for docs).
+3. Commit as `type(scope): description` and reference the ADO work item (`AB#<id>`).
+4. Open a PR linked to the work item.
 
 ---
 
 ## License
 
-{{MIT / Proprietary — choose one and delete the other}}
-
-MIT License — see [LICENSE](LICENSE)
-
-*Proprietary — Hybrid Cloud Solutions LLC. All rights reserved.*
+MIT — see [LICENSE](LICENSE). Portions based on the [Astrofy](https://github.com/manuelernestog/astrofy)
+template (MIT).
 
 ---
 
 **Owner:** Kristopher Turner — kris@hybridsolutions.cloud
-Hybrid Cloud Solutions LLC — hybridsolutions.cloud
+Hybrid Cloud Solutions LLC — [hybridsolutions.cloud](https://hybridsolutions.cloud)

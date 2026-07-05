@@ -1,18 +1,19 @@
 ---
 import PostLayout from "../../layouts/PostLayout.astro";
-import { getCollection, getEntryBySlug } from "astro:content";
-import { AstroError } from "astro/errors";
+import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  return posts.map((post) => ({ params: { slug: post.slug } }));
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
 }
 
-const { slug } = Astro.params;
-const post = await getEntryBySlug("blog", slug);
-if (!post) throw new AstroError(404, `Post not found: ${slug}`);
+const { post } = Astro.props;
+const { Content } = await post.render();
 ---
 
 <PostLayout {...post.data}>
-  {post.body}
+  <Content />
 </PostLayout>
