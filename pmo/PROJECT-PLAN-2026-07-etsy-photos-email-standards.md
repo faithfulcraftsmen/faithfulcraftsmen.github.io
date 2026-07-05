@@ -231,10 +231,10 @@ MX + SPF + DKIM) → create the three custom rules → enable catch-all. Then re
 - [x] Delete demo store items
 - [x] CI sync step + daily cron (skips until secret/var set)
 
-### Email (C) — site DONE; Cloudflare pending (runbook ready)
-- [ ] Verify destination `kris@hybridsolutions.cloud` (owner, per runbook)
-- [ ] Create `shop@`, `hello@`, `contact@` + catch-all (owner, per runbook)
-- [ ] Register Etsy store with `shop@` (owner)
+### Email (C) — DONE (Cloudflare Email Routing live via API, 2026-07-04)
+- [x] Verify destination `kris@hybridsolutions.cloud` (was already verified in the account)
+- [x] Create `shop@`, `hello@`, `contact@` + catch-all → `kris@hybridsolutions.cloud` (via Cloudflare API; Email Routing enabled, MX route1/2/3.mx.cloudflare.net)
+- [ ] Register Etsy store with `shop@` (owner — aliases are live and ready)
 - [x] Wire contact page + footer to `hello@`
 - [x] `pmo/RUNBOOK-cloudflare-email-aliases.md`
 
